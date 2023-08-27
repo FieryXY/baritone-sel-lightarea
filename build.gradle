@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '0.5-SNAPSHOT'
+	id 'fabric-loom' version '1.2-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -33,7 +33,7 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
 	//put baritone in ./libs/
-	modImplementation "baritone-api-fabric:baritone-api-fabric:1.6.3"
+	modImplementation "baritone-api-fabric:baritone-api-fabric:1.10.1"
 
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.
@@ -74,6 +74,10 @@ jar {
 	from("LICENSE") {
 		rename { "${it}_${project.archivesBaseName}"}
 	}
+}
+
+loom {
+	accessWidenerPath = file("src/main/resources/barlight.accesswidener")
 }
 
 // configure the maven publication
